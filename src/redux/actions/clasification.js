@@ -1,4 +1,7 @@
+import Swal from 'sweetalert2';
 import { types } from '../types/types';
+import { startLoadMovie } from './movie';
+import { hideLoading, showLoading } from './ui';
 
 const endPoint = process.env.REACT_APP_API + '/clasification';
 
@@ -24,10 +27,20 @@ export const loadClasifications = (clasifications) => ({
   payload: clasifications,
 });
 
+export const setActiveClasification = (clasification) => ({
+  type: types.setActiveClassification,
+  payload: clasification,
+});
+
+export const clearActiveClasifications = () => ({
+  type: types.clearActiveClassification
+});
+
 // Asynchronous actions
 
 export const startAddClasification = (clasification) => {
   return async (dispatch) => {
+    dispatch(showLoading());
     const res = await fetch(endPoint, {
       method: 'POST',
       headers: {
@@ -36,23 +49,37 @@ export const startAddClasification = (clasification) => {
       body: JSON.stringify(clasification),
     });
     const clasificationRes = await res.json();
-    dispatch(addClasification(clasificationRes));
+    dispatch(hideLoading());
+    if(clasificationRes.ok) {
+      dispatch(addClasification(clasificationRes.clasification));
+      Swal.fire('Information', 'Classification added successfully', 'success');
+    } else {
+      Swal.fire('Information', clasificationRes.message, 'error');
+    }
   };
 };
 
 export const startDeleteClasification = (clasificationId) => {
   return async (dispatch) => {
+    dispatch(showLoading());
     const res = await fetch(`${endPoint}/${clasificationId}`, {
       method: 'DELETE'
     });
     const clasificationRes = await res.json();
-    console.log(clasificationRes);
-    dispatch(deleteClasification(clasificationId));
+    dispatch(hideLoading());
+    if(clasificationRes.ok) {
+      dispatch(deleteClasification(clasificationId));
+      dispatch(startLoadMovie());
+      Swal.fire('Information', 'Classification deleted successfully', 'success');
+    } else {
+      Swal.fire('Information', clasificationRes.message, 'error');
+    }
   };
 };
 
 export const startUpdateClasification = (clasification) => {
   return async (dispatch) => {
+    dispatch(showLoading());
     const res = await fetch(`${endPoint}/${clasification._id}`, {
       method: 'PUT',
       headers: {
@@ -61,7 +88,14 @@ export const startUpdateClasification = (clasification) => {
       body: JSON.stringify(clasification),
     });
     const clasificationRes = await res.json();
-    dispatch(updateClasification(clasificationRes));
+    dispatch(hideLoading());
+    if(clasificationRes.ok) {
+      dispatch(updateClasification(clasificationRes.clasification));
+      dispatch(startLoadMovie());
+      Swal.fire('Information', 'Classification updated successfully', 'success');
+    } else {
+      Swal.fire('Information', clasificationRes.message, 'error');
+    }
   };
 };
 
@@ -69,6 +103,11 @@ export const startLoadClasification = () => {
   return async (dispatch) => {
     const res = await fetch(endPoint);
     const clasificationRes = await res.json();
-    dispatch(loadClasifications(clasificationRes));
+    console.log(clasificationRes.clasifications);
+    if(clasificationRes.ok) {
+      dispatch(loadClasifications(clasificationRes.clasifications));
+    } else {
+      Swal.fire('Information', clasificationRes.message, 'error');
+    }
   };
 };

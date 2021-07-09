@@ -1,11 +1,13 @@
 import { types } from "../types/types";
 
 const initialState = {
-    loading: false
+    loading: false,
+    movieModal: false,
+    classificationModal: false
 }
 
 export const uiReducer = (state = initialState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case types.showLoading:
             return {
                 loading: true
@@ -13,6 +15,26 @@ export const uiReducer = (state = initialState, action) => {
         case types.hideLoading:
             return {
                 loading: false
+            }
+        case types.showClassificationModal:
+            return {
+                ...state,
+                classificationModal: true
+            };
+        case types.hideClassificationModal:
+            return {
+                ...state,
+                classificationModal: false
+            }
+        case types.showMovieModal:
+            return {
+                ...state,
+                movieModal: true
+            };
+        case types.hideMovieModal:
+            return {
+                ...state,
+                movieModal: false
             }
         default:
             return state;

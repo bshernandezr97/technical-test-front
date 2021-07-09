@@ -15,5 +15,9 @@ export const types = {
     clearActiveMovie: '[movie] clearActive',
     // ui actions
     showLoading: '[ui] showLoading',
-    hideLoading: '[ui] hideLoading'
+    hideLoading: '[ui] hideLoading',
+    showClassificationModal: '[ui] showClassificationModal',
+    hideClassificationModal: '[ui] hideClassificationModal',
+    showMovieModal: '[ui] showMovieModal',
+    hideMovieModal: '[ui] hideMovieModal',
 }

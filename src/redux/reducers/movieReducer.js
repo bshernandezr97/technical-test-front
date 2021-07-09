@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const moviesReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case types.addMovie:
       return {
         ...state,
@@ -18,6 +18,7 @@ export const moviesReducer = (state = initialState, action) => {
         movies: state.movies.filter((m) => m._id !== action.payload),
       };
     case types.loadMovies:
+      console.log(action.payload);
       return {
         ...state,
         movies: action.payload,

@@ -6,21 +6,22 @@ const initialState = {
 };
 
 export const clasificationReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case types.addClasification:
       return {
         ...state,
         clasifications: [action.payload, ...state.clasifications],
       };
-    case types.deleteclasification:
+    case types.deleteClasification:
       return {
         ...state,
         clasifications: state.clasifications.filter((c) => c._id !== action.payload),
       };
-    case types.loadclasifications:
+    case types.loadClasifications:
+      console.log(action.payload);
       return {
         ...state,
-        clasifications: action.payload,
+        clasifications: action.payload
       };
     case types.updateClasification:
       return {
@@ -35,12 +36,12 @@ export const clasificationReducer = (state = initialState, action) => {
           }
         }),
       };
-    case types.setActiveclasification:
+    case types.setActiveClassification:
       return {
         ...state,
         active: action.payload,
       };
-    case types.clearActiveclasification:
+    case types.clearActiveClassification:
       return {
         ...state,
         active: null,

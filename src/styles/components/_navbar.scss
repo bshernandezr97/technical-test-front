@@ -1,0 +1,26 @@
+
+.nav__container {
+    background-color: $secundary;
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__link {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    transition: color ease .5s;
+    &:hover {
+        color: darken($color: white, $amount: 20);
+    }
+}
+
+.nav__brand {
+    font-size: 2rem;
+    color: white;
+}

@@ -1,0 +1,42 @@
+
+.table__app {
+    width: 100%;
+    height: fit-content;
+    border-spacing: 0px;
+}
+
+
+.table__app th {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: $secundary;
+    color: white;
+    text-align: center;
+}
+
+
+.table__app td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.table__action-danger {
+    font-size: 1.5rem;
+    color: $danger;
+    transition: color ease 0.5s;
+    cursor: pointer;
+    &:hover {
+        color: darken($color: $danger, $amount: 20);
+    }
+}
+
+.table__action-primary {
+    font-size: 1.5rem;
+    color: $primary;
+    transition: color ease 0.5s;
+    cursor: pointer;
+    &:hover {
+        color: darken($color: $primary, $amount: 20);
+    }
+}

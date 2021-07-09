@@ -1,0 +1,28 @@
+.form__app {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__app input{
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 8px;
+    font-size: 12pt;
+    width: 80vw;
+    text-align: center;
+}
+
+.form__app select{
+    border-radius: 5px;
+    background-color: white;
+    text-align-last: center;
+    border: 1px solid gray;
+    padding: 8px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+.form__title {
+    text-align: center;
+    font-size: larger;
+}

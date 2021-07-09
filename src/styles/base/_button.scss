@@ -1,0 +1,46 @@
+.btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: 0px solid gray;
+    color: white;
+    font-weight: bolder;
+}
+
+.btn-primary {
+    background-color: $primary;
+    &:hover {
+        background-color: darken($color: $primary, $amount: 20);
+    }
+}
+
+.btn-secundary {
+    background-color: $secundary;
+    &:hover {
+        background-color: darken($color: $secundary, $amount: 20);
+    }
+}
+
+.btn-danger {
+    background-color: $danger;
+    &:hover {
+        background-color: darken($color: $danger, $amount: 20);
+    }
+}
+
+.btn-success {
+    background-color: $success;
+    &:hover {
+        background-color: darken($color: $success, $amount: 20);
+    }
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+}
