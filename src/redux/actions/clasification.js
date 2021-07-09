@@ -61,19 +61,32 @@ export const startAddClasification = (clasification) => {
 
 export const startDeleteClasification = (clasificationId) => {
   return async (dispatch) => {
-    dispatch(showLoading());
-    const res = await fetch(`${endPoint}/${clasificationId}`, {
-      method: 'DELETE'
-    });
-    const clasificationRes = await res.json();
-    dispatch(hideLoading());
-    if(clasificationRes.ok) {
-      dispatch(deleteClasification(clasificationId));
-      dispatch(startLoadMovie());
-      Swal.fire('Information', 'Classification deleted successfully', 'success');
-    } else {
-      Swal.fire('Information', clasificationRes.message, 'error');
-    }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        dispatch(showLoading());
+        const res = await fetch(`${endPoint}/${clasificationId}`, {
+          method: 'DELETE'
+        });
+        const clasificationRes = await res.json();
+        dispatch(hideLoading());
+        if(clasificationRes.ok) {
+          dispatch(deleteClasification(clasificationId));
+          dispatch(startLoadMovie());
+          Swal.fire('Information', 'Classification deleted successfully', 'success');
+        } else {
+          Swal.fire('Information', clasificationRes.message, 'error');
+        }
+      }
+    }) 
   };
 };
 

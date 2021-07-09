@@ -68,20 +68,31 @@ export const startAddMovie = (movie) => {
 };
 
 export const startDeleteMovie = (movieId) => {
-  return async (dispatch) => {
-    dispatch(showLoading());
-    const res = await fetch(`${endPoint}/${movieId}`, {
-      method: "DELETE",
-    });
-    const movieRes = await res.json();
-    console.log(movieRes);
-    dispatch(hideLoading());
-    if(movieRes.ok) {
-      dispatch(deleteMovie(movieId));
-      Swal.fire('Information', 'Movie deleted successfully', 'success');
-    } else {
-      Swal.fire('Information', movieRes.message, 'error');
-    }
+  return async (dispatch) => {    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        dispatch(showLoading());
+        const res = await fetch(`${endPoint}/${movieId}`, {
+          method: "DELETE",
+        });
+        const movieRes = await res.json();
+        dispatch(hideLoading());
+        if(movieRes.ok) {
+          dispatch(deleteMovie(movieId));
+          Swal.fire('Information', 'Movie deleted successfully', 'success');
+        } else {
+          Swal.fire('Information', movieRes.message, 'error');
+        }
+      }
+    })  
   };
 };
 
