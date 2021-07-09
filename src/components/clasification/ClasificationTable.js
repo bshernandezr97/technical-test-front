@@ -44,6 +44,7 @@ export const ClasificationTable = () => {
                 {renderItems}
             </tbody>
         </table>
+        { clasifications.length === 0 && <div className="table__empty-message"> There are not any classification, you can add one with the bottow below </div>  }
     </div>
     )
 }

@@ -40,3 +40,9 @@
         color: darken($color: $primary, $amount: 20);
     }
 }
+
+.table__empty-message {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}

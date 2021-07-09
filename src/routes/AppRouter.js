@@ -33,8 +33,8 @@ export const AppRouter = () => {
       <div className="container">
         <Navbar />
         <Switch>
-          <Route path="/movies" component={MoviesPage} />
-          <Route path="/clasification" component={ClasificationPage} />
+          <Route exact path="/movies" component={MoviesPage} />
+          <Route exact path="/clasification" component={ClasificationPage} />
           <Redirect to="/movies" />
         </Switch>
       </div>

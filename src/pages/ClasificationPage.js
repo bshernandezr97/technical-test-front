@@ -19,7 +19,7 @@ export const ClasificationPage = () => {
         <ClasificationTable />
         <button onClick={handleOpenModal} className="btn btn-primary mt-5">
           <FontAwesomeIcon className="mr-5" icon={faPlus} />
-          Add Classication
+          Add Classification
         </button>
       </div>
     </div>
